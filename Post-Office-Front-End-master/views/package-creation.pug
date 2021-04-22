@@ -1,0 +1,234 @@
+extends user
+
+block script
+    script. 
+        window.onload=function(){
+            var quoteButton = document.getElementById("quote_button")
+            var createOrderButton = document.getElementById("create_order_button")
+ 
+
+            var package_type = document.getElementById("package_type_value")
+            var insurance = document.getElementById("insurance_value")
+            var package_type_name = document.getElementById("package_type")
+            var insurance_name = document.getElementById("insurance")
+
+            var quoteTypeDiv = document.getElementById("quote-type")
+            var quoteValueDiv = document.getElementById("quote-value")
+            // var prices = {"size": volume, "weight": weight, "package": packageBasePrice, "tax": tax}
+            createOrderButton.style.display = "none" 
+
+            function getQuoteClicked(){
+                while(quoteTypeDiv.firstChild){
+                    quoteTypeDiv.removeChild(quoteTypeDiv.firstChild);
+                }
+                while(quoteValueDiv.firstChild){
+                    quoteValueDiv.removeChild(quoteValueDiv.firstChild);
+                }
+
+
+                var weight = document.getElementById("package-weight").value
+                var height = document.getElementById("package-height").value
+                var width = document.getElementById("package-width").value
+                var length = document.getElementById("package-length").value
+                var packageValue = document.getElementById("package-value").value
+                var price = document.getElementById("price")
+
+                var dimension = height * width * length 
+                var basePrice = 0
+                var weightCharge = 0
+                var total = 0
+                var taxRate = 0.15
+                var tax = 0
+
+                var packageSelectedIndex = package_type.selectedIndex
+                var packageTypePrice = package_type.options[packageSelectedIndex].value
+                var packageTypeName = package_type.options[packageSelectedIndex].text
+                var insuranceSelectedIndex = insurance.selectedIndex
+                var insuranceRate = insurance.options[insuranceSelectedIndex].value
+                var insuranceName = insurance.options[insuranceSelectedIndex].text
+
+                package_type_name.value = packageTypeName
+                insurance_name.value = insuranceName
+
+                packageTypePrice = parseInt(packageTypePrice)
+
+                var insurancePrice = packageValue * insuranceRate
+                console.log(packageTypeName)
+                console.log(packageTypePrice)
+
+                if(dimension <= 10)
+                    basePrice = 5
+                else if(dimension <= 20)
+                    basePrice = 10
+                else if(dimension <= 50)
+                    basePrice = 20
+                else
+                    basePrice = 30
+                
+                if(weight >= 0 && weight < 20)
+                    weightCharge = 0 
+                else if(weight >= 20 && weight < 50 )
+                    weightCharge = 10
+                else
+                    weightCharge = 20
+
+                total = basePrice + weightCharge + packageTypePrice + insurancePrice 
+                tax = total * taxRate
+                total = Math.round(total + tax) 
+
+                priceDescriptions = {
+                    "Dimension (height x weight x length )": dimension,
+                    "Weight Charge": weightCharge,
+                    "Package Type": packageTypeName,
+                    "Package Type Charge": packageTypePrice,
+                    "Insurance Policy": insuranceName,
+                    "Insurance Charge": insurancePrice,
+                    "Base Price": basePrice,
+                    "Tax": tax,
+                    "Total": total
+                    } 
+
+
+                console.log(priceDescriptions)
+                for ( var key in priceDescriptions){
+                    //console.log(key, " : ", priceDescriptions[key])
+                    var newPre = document.createElement("pre")
+                    var node = document.createTextNode(key)
+                    newPre.appendChild(node)
+                    quoteTypeDiv.appendChild(newPre)
+
+                    newPre = document.createElement("pre")
+                    node = document.createTextNode(priceDescriptions[key])
+                    newPre.appendChild(node)
+                    quoteValueDiv.appendChild(newPre)
+                }
+
+                createOrderButton.style.display = "block" 
+                price.value = priceDescriptions["Total"] 
+            }
+            quoteButton.onclick = getQuoteClicked
+        }
+
+
+block user_profile_content
+    .container-fluid
+        .row-sm
+            p Store ID:        #{officeData.off_id}      
+            p Store address:   #{officeData.off_address}  
+            p Active employee ID: #{employeeData.employee_id}       
+            p Active employee name: #{data.name}        
+
+            .text-center(style="margin-top: 20px")
+                h3 --- Create new package order --- 
+            .dropdown-divider
+        .row-lg
+            form.container(action="/package", method="post", id="package-creation-form")
+                .row
+                    .col-lg-6(style="border-right: 2px solid #d3d3d3")
+                        input.form-control(type="text", name="current_location", id= "current_location", style="display: none", value= officeData.off_address)
+                        input.form-control(type="text", name="office_id", id= "office_id", style="display: none", value= officeData.off_id)
+                        h3 Sender Information
+                        h5 (*) is required
+                        label(for='full-name-sender') Sender's full name *
+                        input(type='text', name="sender_name", class='form-control', id='full-name-sender', aria-describeby='full-name-recipient-help')
+                        small.form-text.text-muted First and last name are required 
+
+                        label(for='address-sender') Sender's address*
+                        input(type='text', name="sender_address", class='form-control', id='address-sender', aria-describeby='address-recipient-help')
+                        small.form-text.text-muted Recipient address 
+
+                        label(for='phone-number-sender') Sender's phone number*
+                        input(type='number', name="sender_phone_number", class='form-control', id='phone-number-sender', aria-describeby='phone-recipient-number-help')
+
+                        label(for='email-sender') Sender's email
+                        input(type='text', name="sender_email", class='form-control', id='email-sender', aria-describeby='email-recipient-help')
+                    .col-lg-6
+                        h3 Recipient Information
+                        h5 (*) is required
+            
+                        label(for='full-name-recipient') Recipient's full name *
+                        input(type='text', name="recipient_name", class='form-control', id='full-name-recipient', aria-describeby='full-name-recipient-help')
+                        small.form-text.text-muted First and last name are required 
+
+                        label(for='address-recipient') Recipent's address*
+                        input(type='text', name="recipient_address", class='form-control', id='address-recipient', aria-describeby='address-recipient-help')
+                        small.form-text.text-muted Recipient address 
+
+                        label(for='phone-number-recipient') Recipent's phone number*
+                        input(type='number', name="recipient_phone_number", class='form-control', id='phone-number-recipient', aria-describeby='phone-recipient-number-help')
+
+                        label(for='email-recipient') Recipient's email
+                        input(type='text', name="recipient_email", class='form-control', id='email-recipient', aria-describeby='email-recipient-help')
+                .row
+                    h5 !!! Brief note about this package
+                    input(type='text', name="note", class='form-control', id='note', aria-describeby='email-recipient-help')
+                .dropdown-divider
+                .text-center
+                    h3 --- Package Dimensions ---
+                .row
+                        .col-sm
+                            label(for='height') Package height 
+                            .input-group.mb-
+                                input(type='number', name="height", class='form-control', id='package-height', aria-describeby='package-height')
+                                .input-group-append
+                                    span.input-group-text cm
+                        .col-sm
+                            label(for='length') Package length  
+                            .input-group.mb-3
+                                input(type='number', name="length", class='form-control', id='package-length', aria-describeby='package-length')
+                                .input-group-append
+                                    span.input-group-text cm
+                        .col-sm
+                            label(for='width') Package width 
+                            .input-group.mb-3
+                                input(type='number', name="width", class='form-control', id='package-width', aria-describeby='package-width')
+                                .input-group-append
+                                    span.input-group-text cm
+                        .col-sm
+                            label(for='width') Package weight 
+                            .input-group.mb-3
+                                input(type='number', name="weight", class='form-control', id='package-weight', aria-describeby='package-weight')
+                                .input-group-append
+                                    span.input-group-text lbs 
+
+                .dropdown-divider
+                .text-center
+                    h3 --- Package Type --- 
+                .row
+                    label(for='package_type_value') Package type
+                    select.browser-default.custom-select(id = "package_type_value", name="package_type_value")
+                        option(selected) Not selected 
+                        each val, key in packageTypes
+                            option(value=val)= key 
+
+                .dropdown-divider
+                .text-center
+                    h3 --- Package Value --- 
+                .row
+                    label(for='package_value') Package estimated value
+                    .input-group.mb-3
+                        .input-group-prepend
+                            span.input-group-text $ 
+                        input(type='text', name="package_value", class='form-control', id='package-value', aria-describeby='package-value-help')
+                    label(for='insurance_value') Insurance 
+                    select.browser-default.custom-select(id = "insurance_value", name="insurance_insurance")
+                        option(selected) Not selected 
+                            each val, key in insurancePolicies
+                                option(value=val)= key
+
+                .dropdown-divider
+                .text-center
+                    h3 --- Final Quote --- 
+                .row
+                    .col-sm
+                        .container-fluid(id="quote-type")
+                    .col-sm
+                        .container-fluid(id="quote-value")
+                    input.form-control(type='text', name="price", id='price', aria-describeby='price-help', style="display: none")
+                    input.form-control(type='text', name="package_type", id='package_type', aria-describeby='price-help', style="display: none")
+                    input.form-control(type='text', name="insurance", id='insurance', aria-describeby='price-help', style="display: none")
+
+                button.btn.btn-primary(type="button" id="quote_button", style="margin-top: 50px") Get Quote
+                input.btn.btn-primary(type='submit', id="create_order_button" value= "Create new order", style="margin-top: 50px")
+
+                        

@@ -1,0 +1,48 @@
+extends layout
+
+block script
+block content
+  .container-fluid
+    .row.flex-xl-nowrap
+      .col-md-4.col-xl-3.bd-sidebar
+        nav#sidebar(style="border-right: 2px solid #d3d3d3 ")
+          .p-4.pt-5
+            h1 User Profile
+            .dropdown-divider
+            ul.list-unstyled.components.mb-5
+              li.active
+                a(href="/user/userProfile") Contact Information
+              li
+                a(href='/user/packages') Packages 
+            .dropdown-divider
+            case data.user_type
+              when 1 
+                h3 Staff 
+              when 2
+                h3 Admin
+            ul.list-unstyled.components.mb-5
+            if data.user_type >= 1
+              // li.active
+                // a(href="/user/userProfile") Employment Information 
+              li.active
+                a(href="/user/packageManagement") Package Management 
+              li.active
+                a(href="/user/packageCreation") Create Package Order 
+              // li.active
+                // a(href="/user/userProfile") Vacation 
+              .dropdown-divider
+            if data.user_type >= 2 
+              li.active
+                a(href="/register/employee") Employee Registration 
+              // li.active
+                // a(href="/user/userProfile") Post Office Creation 
+              li.active
+                a(href="/user/adminTool") Administration Tools 
+              // li.active
+                // a(href="/user/userProfile") Staff Management 
+              .dropdown-divider
+      .col-md-9.col-xl-9.py-md-3.pl-md-9.bd-content
+        // Page Content
+        content.p-4.p-md-5.pt-5
+          .container-fluid
+            block user_profile_content

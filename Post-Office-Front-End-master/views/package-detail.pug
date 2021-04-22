@@ -1,0 +1,67 @@
+extends user
+
+block script
+
+block user_profile_content
+
+  a(href="/user/packages/") <<< Back to packages
+  .dropdown-divider
+  .bs-example(style="margin-top: 50px")
+    ul.nav.nav-pills
+      li.nav-item
+          a.nav-link.active(data-toggle='pill' href='#info') Information 
+      li.nav-item
+          a.nav-link(data-toggle='pill' href='#history') History 
+    .tab-content
+      #info.tab-pane.fade.show.active
+        br
+        br
+        h1 Package Detail 
+        .dropdown-divider
+        pre Tracking Number:       #{package.tracking_number}
+        pre Note:                  #{package.note}
+        pre Current Location:      #{package.current_location}
+        pre Delivery Status:       #{package.delivery_status}
+        form(action="/package/history/" + package.tracking_number, method="get", id="history-form")
+          input.btn.btn-primary(type='submit', value="Show history", style="margin-top: 10px; margin-bottom: 10px;")
+        .dropdown-divider
+        h3 Sender Information
+        pre Sender Name:           #{package.sender_name}
+        pre Sender Address:        #{package.sender_address}
+        pre Sender Email:          #{package.sender_email}
+        pre Sender Phone Number:   #{package.sender_phone_number}
+        .dropdown-divider
+        h3 Recipient Information
+        pre Recipient Name:        #{package.recipient_name}
+        pre Recipient Address:     #{package.recipient_address}
+        pre Recipient Email:       #{package.recipient_email}
+        pre Recipient Phone Number:#{package.recipient_phone_number}
+        .dropdown-divider
+        h3 Package Details and Insurance 
+        pre Package Type:          #{package.package_type}
+        pre Insurance:             #{package.insurance}
+        pre Weight:                #{package.weight}
+        pre Height:                #{package.height}
+        pre Width:                 #{package.width}
+        pre Length:                #{package.length}
+        .dropdown-divider
+        pre Paid:                  $#{package.price}
+      #history.tab-pane.fade.show
+        h1 Package History
+        .dropdown-divider
+        
+        .container-fluid
+          .table-y.scrollbar
+            table.table.table-bordered.table-striped.mb-0
+              thead
+              tr
+                  th(scope='col') Location 
+                  th(scope='col') Status  
+                  th(scope='col') Updated Date
+              each val, index in history
+                  tbody
+                      th(scope='row')= val.tracking_location
+                      td= val.tracking_status
+                      td= val.tracking_date
+
+        

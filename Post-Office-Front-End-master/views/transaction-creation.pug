@@ -1,0 +1,46 @@
+extends layout
+block content
+  .container-fluid(style="padding-top:20px")
+    .jumbotron
+        .container
+          .row
+            .col-sm
+              .jumbotron
+                .text-center 
+                  h2 transaction creation form
+                form(action="/transaction", method="post", id="transaction")
+                  h5 (*) is required
+                  label(for='item_revenue_name') item revenue name
+                  input(type='text',name ='item_revenue_name', class='form-control', id='item_revenue_name', aria-describeby='revenuename-help', placeholder="item revenue name")
+                  small(id='item_revenue_nameHelp', class='form-text text-muted') 
+
+                  label(for='item_revenue_price') item revenue price
+                  input(type='text',name='item_revenue_price', class='form-control', id='item_revenue_price', aria-describeby='revenueprice-help',  placeholder="item revenue price")
+                  small(id='item_revenue_priceHelp', class='form-text text-muted')  
+
+                  label(for='transaction_date') transaction date
+                  input(type='date',name='transaction_date', class='form-control', id='transaction_date', aria-describeby='transactiondate-help')
+                  small(id='transaction_dateHelp', class='form-text text-muted')  
+                  br
+                  label(for='item_expend_name') item expend name
+                  input(type='text',name='item_expend_name', class='form-control', id='item_expend_name', aria-describeby='expendname-help', placeholder="item expend name")
+                  small(id='item_expend_nameHelp', class='form-text text-muted') 
+
+                  label(for='item_expend_price') item expend price 
+                  input(type='text',name='itemexpend_price', class='form-control', id='item_expend_price', aria-describeby='expendprice-help', placeholder="item expend price")
+                  small(id='item_expend_price', class='form-text text-muted')
+
+
+                  label(for='off_id') office id
+                  input(type='number',name ='off_id', class='form-control', id='off_id', aria-describeby='off_idhelp', placeholder="office id")
+                  // small(id='address', class='form-text text-muted') This is a little secret
+
+
+                  input.btn.btn-primary(type='submit', value="create transaction", style="margin-top: 50px")
+
+                 
+
+
+ 
+                  
+

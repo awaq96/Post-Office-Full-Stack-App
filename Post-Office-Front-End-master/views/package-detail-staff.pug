@@ -1,0 +1,89 @@
+extends user
+
+block script
+
+block user_profile_content
+
+    a(href="/user/packageManagement/") <<< Back to packages
+    h1 STAFF
+    br
+    .dropdown-divider
+    .bs-example(style="margin-top: 50px")
+        ul.nav.nav-pills
+            li.nav-item
+                a.nav-link.active(data-toggle='pill' href='#info') Information 
+            li.nav-item
+                a.nav-link(data-toggle='pill' href='#history') History 
+
+        .tab-content
+            #info.tab-pane.fade.show.active
+                form(action="/package/update/", method="post")
+                    .form-group
+                    h1 Package Detail 
+                    pre Tracking Number:       #{package.tracking_number}
+                        input.form-control(type="text", name="tracking_number", id = "note", value=package.tracking_number, style="display: none")
+                    pre Note:                  
+                        input.form-control(type="text", name="note", id = "note", value=package.note)
+                    pre Current Location:      
+                        input.form-control(type="text", name="current_location", id = "current_location", value=package.current_location)
+                    pre Delivery Status:       
+                    select.browser-default.custom-select(id="delivery_status", name="delivery_status")
+                        option(selected)= package.delivery_status
+                        each val, index in deliveryOptions
+                            option(value=val)= val
+                    .dropdown-divider
+                    h3 Sender Information
+                    pre Sender Account ID ( if registered ) :          
+                        input.form-control(type="number", name="sender_id", id = "sender_id", value=package.sender_id)
+                    pre Sender Name:          
+                        input.form-control(type="text", name="sender_name", id = "sender_name", value=package.sender_name)
+                    pre Sender Address:        
+                        input.form-control(type="text", name="sender_address", id = "sender_address", value=package.sender_address)
+                    pre Sender Email:          
+                        input.form-control(type="text", name="sender_email", id = "sender_email", value=package.sender_email)
+                    pre Sender Phone Number:  
+                        input.form-control(type="text", name="sender_phone_number", id = "sender_phone_number", value=package.sender_phone_number)
+                    .dropdown-divider
+                    h3 Recipient Information
+                    pre Recipient Account ID ( if registered ) :          
+                        input.form-control(type="number", name="recipient_id", id = "recipient_id", value=package.recipient_id)
+                    pre Recipient Name:     
+                        input.form-control(type="text", name="recipient_name", id = "recipient_name", value=package.recipient_name)
+                    pre Recipient Address:
+                        input.form-control(type="text", name="recipient_address", id = "recipient_address", value=package.recipient_address)
+                    pre Recipient Email:       
+                        input.form-control(type="text", name="recipient_email", id = "recipient_email", value=package.recipient_email)
+                    pre Recipient Phone Number:
+                        input.form-control(type="text", name="recipient_phone_number", id = "recipient_phone_number", value=package.recipient_phone_number)
+                    .dropdown-divider
+                    h3 Package Details and Insurance 
+                    pre Package Type:          #{package.package_type}
+                    pre Insurance:             #{package.insurance}
+                    pre Weight:                #{package.weight}
+                    pre Height:                #{package.height}
+                    pre Width:                 #{package.width}
+                    pre Length:                #{package.length}
+                    .dropdown-divider
+                    pre Paid:                  $#{package.price}
+
+                    input.btn.btn-primary(type='submit', value="Update Package")
+                
+            #history.tab-pane.fade.show
+                h1 Package History
+                .dropdown-divider
+                
+                .container-fluid
+                    .table-y.scrollbar
+                        table.table.table-bordered.table-striped.mb-0
+                            thead
+                            tr
+                                th(scope='col') Location 
+                                th(scope='col') Status  
+                                th(scope='col') Updated Date
+                            each val, index in history
+                                tbody
+                                    th(scope='row')= val.tracking_location
+                                    td= val.tracking_status
+                                    td= val.tracking_date
+
+                

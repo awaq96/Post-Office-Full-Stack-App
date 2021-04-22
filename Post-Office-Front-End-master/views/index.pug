@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  .container-fluid(style="padding-top:20px")
+    .jumbotron
+      h1.display-4 #{title}
+      form(action="/package/quickSearch/", method="post", id="register-form")
+        label(for='tracking_number') Search package by tracking number
+        input(type='number', name="trackingNumber", class='form-control', id='tracking_number', aria-describeby='tracking_number', placeholder="#123456789")
+        input.btn.btn-primary(type='submit', value="Search", style="margin-top: 20px")
+      

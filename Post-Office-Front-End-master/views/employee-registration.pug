@@ -1,0 +1,85 @@
+extends layout
+block content
+  .container-fluid(style="padding-top:20px")
+    .jumbotron
+        .container
+          .row
+            .col-sm
+              .jumbotron
+                .text-center 
+                  h2 Empolyee Registration
+
+                form(action="/register/employee", method="post", id="register-form")
+                  h5 (*) is required
+
+                  label(for='name') Name*
+                  input(type='text', name="name",class='form-control', id='name', aria-describeby='nameHelp',placeholder="Full name ...")
+                  small(id='nameSmall', class='form-text text-muted')
+
+                  label(for='email') Email*
+                  input(type='email', name="email", class='form-control', id='email', aria-describeby='email-help', placeholder="email@example.com")
+                  small(id='emailHelp', class='form-text text-muted') This is a little secret
+
+                  label(for='username') Username*
+                  input(type='text', name="username", class='form-control', id='username', aria-describeby='password-help')
+                  // small(id='usernameHelp', class='form-text text-muted')  
+
+                  label(for='password') Password*
+                  input(type='password', name="password",class='form-control', id='password', aria-describeby='password-help')
+                  small(id='passwordHelp', class='form-text text-muted') @ symbol, uppercase letters and numbers are recommended for a strong password 
+
+                  .form-check.form-check-inline
+                    input.form-check-input(type="checkbox",name = "isAdmin", id="isAdminCheckBox")
+                    label.form-check-label(for="isAdminCheckBox") Is Administrator ?
+                  br
+
+                  label(for='phoneNumber') Phone number*
+                  input(type='number', name="phoneNumber",class='form-control', id='phoneNumber', aria-describeby='phoneNumberHelp',placeholder="(xxx)-xxx-xxxx")
+                  small(id='phoneNumberSmall', class='form-text text-muted')
+
+                  label(for='address') Address
+                  input(type='text', name="address", class='form-control', id='address', aria-describeby='address', placeholder="12345 Somewhere, State, 00000")
+
+                  label(for='schedule') Schedule*
+                  small(id='nameSmall', class='form-text text-muted')
+                  ul
+                    each val, index in days 
+                      .form-check.form-check-inline
+                        input.form-check-input(type="checkbox",name = val, id="checbox")
+                        label.form-check-label(for="checkbox")= val
+
+                  label(for='position') Position 
+                  small(id='nameSmall', class='form-text text-muted')
+
+                  select.browser-default.custom-select(id = "position", name="position")
+                    option(selected) Select position: 
+                    each val, index in positions
+                      option(value=index)= val
+
+                  label(for='otherPosition') Other Position
+                  input(type='text', name="otherPosition",class='form-control', id='otherPosition', aria-describeby='name-help',placeholder="Other position ... ")
+                  small(id='otherPosition', class='form-text text-muted')
+                  
+                  label(for='salary') salary ( per hour )  
+                  input(type='text', name="salary",class='form-control', id='salary', aria-describeby='salary')
+                  small(id='salarysmall', class='form-text text-muted')
+
+                  label(for='officeLocation') Office Location 
+
+                  select.browser-default.custom-select(id = "officeLocation", name="officeLocation")
+                    option(selected) Select office location: 
+                    each val, index in officeLocations 
+                      option(value=index)= val.off_address
+
+                  label(for='seq_ques') Sequrity Question ( optional )
+                  select.form-control.input-lg
+                    option(selecterd='') What is the first name of the person you first kissed?
+                    option(selecterd='') What is the last name of the teacher who gave you your first failing grade?
+                    option(selecterd='') What  is the name of a college you applied to but didn't attend?
+                    option(selecterd='') What was your childhood nickname?
+                    option(selecterd='') In what city did you meet your spouse/significant other?
+                    option(selecterd='') What is the name of your favorite childhood friend?
+                    option(selecterd='') What street did you live on in third grade?
+                  input.form-control.input-lg(placeholder='Sequrity Answer', name='answer', value='', type='text')
+
+                  input.btn.btn-primary(type='submit', value="Resgister New Account", style="margin-top: 50px")

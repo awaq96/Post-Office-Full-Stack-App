@@ -1,0 +1,144 @@
+extends user
+
+block user_profile_content
+    .container-fluid
+        .row-lg
+            p Store ID:        #{officeData.off_id}      
+            p Store address:   #{officeData.off_address}  
+            p Active employee ID: #{employeeData.employee_id}       
+            p Active employee name: #{data.name}        
+            .dropdown-divider
+        .row-lg
+            .text-center
+                h5 Packages Management
+                .bs-example
+                    ul.nav.nav-pills.nav-fill
+                        li.nav-item.active
+                            a.nav-link(data-toggle="pill" href="#all") All 
+                        li.nav-item.active
+                            a.nav-link(data-toggle="pill" href="#inTransit") In Transit
+                        li.nav-item
+                            a.nav-link(data-toggle="pill" href="#delivered") Delivered
+                        li.nav-item
+                            a.nav-link(data-toggle="pill" href="#failed") Failed
+                        li.nav-item
+                            a.nav-link(data-toggle="pill" href="#late") Late
+                    .tab-content
+                        #all.tab-pane.fade.show.active
+                            .container-fluid
+                                .table-y.scrollbar
+                                    table.table.table-bordered.table-striped.mb-0
+                                        thead
+                                        tr
+                                            th(scope='col') Tracking Number
+                                            th(scope='col') Package Type
+                                            th(scope='col') Delivery Status  
+                                            th(scope='col') Destination
+                                            th(scope='col') 
+                                        each val, key in allPackageData
+                                            tbody
+                                                th(scope='row')= val.tracking_number 
+                                                td= val.package_type 
+                                                td= val.delivery_status 
+                                                td= val.recipient_address 
+                                                td 
+                                                    .dropdown
+                                                        button.btn.btn-primary.dropdown-toggle(type="button", data-toggle="dropdown", aria-haspopup="true",aria-expanded="false") Action
+                                                        .dropdown-menu
+                                                            a.dropdown-item(type="button", href='/user/packageDetailStaff/' + val.tracking_number) Update 
+                                                            a.dropdown-item(type="button", href='/package/removePackage/' + val.tracking_number) Delete 
+                                    
+                        #inTransit.tab-pane.fade
+                            .container-fluid
+                                .table-y.scrollbar
+                                    table.table.table-bordered.table-striped.mb-0
+                                        thead
+                                        tr
+                                            th(scope='col') Tracking Number
+                                            th(scope='col') Package Type
+                                            th(scope='col') Delivery Status  
+                                            th(scope='col') Destination
+                                            th(scope='col') 
+                                        each val, key in inTransitPackages
+                                            tbody
+                                                th(scope='row')= val.tracking_number 
+                                                td= val.package_type 
+                                                td= val.delivery_status 
+                                                td= val.recipient_address 
+                                                td 
+                                                    .dropdown
+                                                        button.btn.btn-primary.dropdown-toggle(type="button", data-toggle="dropdown", aria-haspopup="true",aria-expanded="false") Action
+                                                        .dropdown-menu
+                                                            a.dropdown-item(type="button", href='/user/packageDetailStaff/' + val.tracking_number) Update 
+                                                            a.dropdown-item(type="button", href='/user/removePackage/' + val.tracking_number) Delete 
+
+                        #delivered.tab-pane.fade
+                            .container-fluid
+                                .table-y.scrollbar
+                                    table.table.table-bordered.table-striped.mb-0
+                                        thead
+                                        tr
+                                            th(scope='col') Tracking Number
+                                            th(scope='col') Package Type
+                                            th(scope='col') Delivery Status  
+                                            th(scope='col') Destination
+                                            th(scope='col') 
+                                        each val, key in deliveredPackages
+                                            tbody
+                                                th(scope='row')= val.tracking_number 
+                                                td= val.package_type 
+                                                td= val.delivery_status 
+                                                td= val.recipient_address 
+                                                td 
+                                                    .dropdown
+                                                        button.btn.btn-primary.dropdown-toggle(type="button", data-toggle="dropdown", aria-haspopup="true",aria-expanded="false") Action
+                                                        .dropdown-menu
+                                                            a.dropdown-item(type="button", href='/user/packageDetailStaff/' + val.tracking_number) Update 
+                                                            a.dropdown-item(type="button", href='/user/removePackage/' + val.tracking_number) Delete 
+
+                        #failed.tab-pane.fade
+                            .container-fluid
+                                .table-y.scrollbar
+                                    table.table.table-bordered.table-striped.mb-0
+                                        thead
+                                        tr
+                                            th(scope='col') Tracking Number
+                                            th(scope='col') Package Type
+                                            th(scope='col') Delivery Status  
+                                            th(scope='col') Destination
+                                            th(scope='col') 
+                                        each val, key in failedPackages
+                                            tbody
+                                                th(scope='row')= val.tracking_number 
+                                                td= val.package_type 
+                                                td= val.delivery_status 
+                                                td= val.recipient_address 
+                                                td
+                                                    .dropdown
+                                                        button.btn.btn-primary.dropdown-toggle(type="button", data-toggle="dropdown", aria-haspopup="true",aria-expanded="false") Action
+                                                        .dropdown-menu
+                                                            a.dropdown-item(type="button", href='/user/packageDetailStaff/' + val.tracking_number) Update 
+                                                            a.dropdown-item(type="button", href='/user/removePackage/' + val.tracking_number) Delete 
+                        #late.tab-pane.fade
+                            .container-fluid
+                                .table-y.scrollbar
+                                    table.table.table-bordered.table-striped.mb-0
+                                        thead
+                                        tr
+                                            th(scope='col') Tracking Number
+                                            th(scope='col') Package Type
+                                            th(scope='col') Delivery Status  
+                                            th(scope='col') Destination
+                                            th(scope='col') 
+                                        each val, key in latePackages
+                                            tbody
+                                                th(scope='row')= val.tracking_number 
+                                                td= val.package_type 
+                                                td= val.delivery_status 
+                                                td= val.recipient_address 
+                                                td 
+                                                    .dropdown
+                                                        button.btn.btn-primary.dropdown-toggle(type="button", data-toggle="dropdown", aria-haspopup="true",aria-expanded="false") Action
+                                                        .dropdown-menu
+                                                            a.dropdown-item(type="button", href='/user/packageDetailStaff/' + val.tracking_number) Update 
+                                                            a.dropdown-item(type="button", href='/user/removePackage/' + val.tracking_number) Delete 

@@ -1,0 +1,89 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', )
+
+    // Optional JavaScript
+    // jQuery first, then Popper.js, then Bootstrap JS
+    script(src='https://code.jquery.com/jquery-3.4.1.slim.min.js' integrity='sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n' crossorigin='anonymous')
+    script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js' integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo' crossorigin='anonymous')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js' integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6' crossorigin='anonymous')
+
+  block script
+
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+
+  // Nav bar
+  body
+    // Nav bar
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      a.navbar-brand(href='/') PROJECT
+      button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item.active
+            a.nav-link(href='/')
+              | Home 
+              span.sr-only (current)
+          // li.nav-item
+            // a.nav-link(href='/shipping') Shipping
+          li.nav-item.dropdown
+            // a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+            //   | Tracking
+            // .dropdown-menu(aria-labelledby='navbarDropdown')
+              //form.px-3.px-3(action="/package/quickSearch", method="post")
+              //  .form-group
+              //    label(for="tracking_number") Tracking Number
+              //    input.form-control#email(placeholder='Tracking # ', type='text')
+              //    input.btn.btn-primary(type='submit', value="Search", style="margin-top: 20px")
+              // .dropdown-divider
+              // a.dropdown-item(href='#') Check history
+              // a.dropdown-item(href='#') Change delivery
+              // .dropdown-divider
+              // a.dropdown-item(href='#') Something else here
+          if !isAuthorized
+            li.nav-item.dropdown
+              a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                | Log In or Sign Up
+              .dropdown-menu(aria-labelledby='navbarDropdown' )
+                form.px-4.px-3(action="/user/authorize", method="POST")
+                  div.form-group
+                  label(for='username') Username 
+                  input.form-control(name="username", id='username', placeholder='username', type='text')
+                  div.form-group
+                  label(for='password') Password
+                  input.form-control(name="password", id='password', placeholder='password', type='password')
+                  
+                  input.bt.btn-primary(type='submit', value="Sign In", style="margin-top: 20px")
+                .dropdown-divider
+                a.dropdown-item(href="/register") Forgot password?
+                a.dropdown-item(href="/register") Sign up for new account
+                // li.nav-item
+                  // a.nav-link(href='/transaction') transaction creation
+                // li.nav-item
+                  // a.nav-link(href='/transaction-table') transaction table
+          else
+            li.nav-item.dropdown
+              a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                | User 
+              .dropdown-menu(aria-labelledby='navbarDropdown' )
+                a.dropdown-item(href="/user/userProfile") My Profile 
+                a.dropdown-item(href="/user/packages") My Packages 
+                .dropdown-divider
+                a.dropdown-item(href="/settings") Settings 
+                a.dropdown-item(href="/user/logout") Logout 
+      
+  block content
+
+  // Footer
+  footer.page-footer.font-small.blue
+    .footer-copyright.text-center.py-3 COSC 3380 Project - Michael - Asher - Yonghua - Nguyen - Samuel 
+      a(href='/')
+
+
+
+
+

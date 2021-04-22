@@ -1,0 +1,49 @@
+extends layout
+block content
+  .container-fluid(style="padding-top:20px")
+    .jumbotron
+        .container
+          .row
+            .col-sm
+              .jumbotron
+                .text-center 
+                  h2 Register New Account
+
+                form(action="/register", method="post", id="register-form")
+                  h5 (*) is required
+                  label(for='name') Full Name 
+                  input(type='text', name="name", class='form-control', id='name', aria-describeby='email-help', placeholder="Full name")
+                  // small(id='emailHelp', class='form-text text-muted') Full name 
+
+                  label(for='email') Email*
+                  input(type='email', name="email", class='form-control', id='email', aria-describeby='email-help', placeholder="email@example.com")
+                  small(id='emailHelp', class='form-text text-muted') This is a little secret
+
+                  label(for='username') Username*
+                  input(type='text', name="username", class='form-control', id='username', aria-describeby='password-help')
+                  // small(id='usernameHelp', class='form-text text-muted')  
+
+                  label(for='password') Password*
+                  input(type='password', name="password",class='form-control', id='password', aria-describeby='password-help')
+                  small(id='passwordHelp', class='form-text text-muted') @ symbol, uppercase letters and numbers are recommended for a strong password 
+
+                  label(for='address') Address
+                  input(type='text', name="address", class='form-control', id='address', aria-describeby='address', placeholder="12345 Somewhere, State, 00000")
+                  // small(id='address', class='form-text text-muted') This is a little secret
+
+                  label(for='phoneNumber') Phone Number 
+                  input(type='text',name="phoneNumber", class='form-control', id='phoneNumber', aria-describeby='phoneNumber', placeholder="(xxx)-xxx-xxxx")
+                  // small(id='address', class='form-text text-muted') This is a little secret
+
+                  input.btn.btn-primary(type='submit', value="Resgister New Account", style="margin-top: 50px")
+
+            .col-sm()
+              .jumbotron(style={ background:'#faf0cf'})
+                .text-center 
+                  h2 Forgot Password or Username 
+                .form-group(id='form-group')
+                    h5 (*) is required
+                    label(for='email') Email
+                    input(type='email', class='form-control', id='email', aria-describeby='email-help')
+
+                    buttom.btn.btn-success(type='submit', style="margin-top: 50px") Reset Password 

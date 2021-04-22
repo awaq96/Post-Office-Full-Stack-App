@@ -1,0 +1,50 @@
+extends user
+
+block user_profile_content
+
+    .container-fluid
+        .row-lg(style="margin-bottom: 50px")
+        .row
+            .col-sm(style="border-right: 2px solid #d3d3d3")
+                .jumpotron
+                    h1 Employee Information 
+                    form(action="/user/employeeUpdate/" + employeeData.employee_id, method="post", id="update_form")
+                        .form-group
+                        .dropdown-divider
+                        p Position
+                        select.browser-default.custom-select(id="position", name="position")
+                            if employeeData.position
+                                option(selected)= employeeData.position 
+                            else
+                                option(selected) No Position Selected
+                            each val, key in positions
+                                option(value=val)= val
+
+                        p(style="margin-top: 20px") Schedule:
+                        ul
+                            each val, index in days 
+                                .form-check.form-check-inline
+                                    if schedule[index] ==  val
+                                        input.form-check-input(type="checkbox",name = val, id="checbox", checked)
+                                    else
+                                        input.form-check-input(type="checkbox",name = val, id="checbox")
+
+                                    label.form-check-label(for="checkbox")= val
+                        p Salary ( hourly ):
+                        input.form-control(type="number", name="salary", id = "salary", value=employeeData.salary)
+                        
+                        p(style="margin-top: 20px") Vacation Status
+                        select.browser-default.custom-select(id="vacation", name="vacation")
+                            option(selected)= employeeData.vacation_status
+                                option(value="Not Approved") Vacation Not Approved
+                                option(value="Approved") Vacation Approved
+                        input.btn.btn-primary(type="submit", value = "Update Emplooyee", style="margin-top: 50px")
+
+
+                        // label(for="position")  
+                        // input.form-control(type="text", name = "position", id="position", placeholder="Need position", value = employeeData.position)
+                        // label(for="address", style="margin-top: 30px") Address 
+                        // input.form-control(type="text", name = "address", id="address", placeholder="Address is empty", value= data.address)
+                        // label(for="phone_number", style="margin-top: 30px") Phone number 
+                        // input.form-control(type="text", name = "phone_number", id="phone_number", placeholder="Phone number is empty", value = data.phone_number)
+                        // input.btn.btn-primary(type='submit', value="Update Profile", style="margin-top: 50px")

@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    .container(style="margin-left: 50px")
+      .col-sm
+        a(href="/") <<< Back to Home 
+        br
+        br
+        h1 Tracking history for #{tracking_number}
+        if tracking_number
+          for trackingUpdate in history
+            .jumbotron(style="padding: 20px; max-width: 60%")
+              pre Location: #{trackingUpdate.tracking_location}
+              pre Date: #{trackingUpdate.tracking_date.slice(5,7)}/#{trackingUpdate.tracking_date.slice(8,10)}/#{trackingUpdate.tracking_date.slice(0,4)}, #{trackingUpdate.tracking_date.slice(11,13)}:#{trackingUpdate.tracking_date.slice(14,16)}
+              pre Status: #{trackingUpdate.tracking_status}
+        else
+          pre Tracking number #{tracking_number} is invalid

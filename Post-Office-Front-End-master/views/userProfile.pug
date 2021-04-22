@@ -1,0 +1,60 @@
+extends user
+
+block user_profile_content
+    .fluid-container
+        .row-lg(style="margin-bottom: 50px")
+            .text-center
+                img(src="https://static.thenounproject.com/png/538846-200.png")
+        
+                h1= data.name 
+        .row
+            .col-sm(style="border-right: 2px solid #d3d3d3")
+                .jumpotron
+                    h1 Contact
+                    form(action="/user/update/", method="post", id="update_form")
+                        label(for="email") Email
+                        input.form-control(type="email", name = "email", id="email", placeholder="Email is empty", value = data.email)
+                        label(for="address", style="margin-top: 30px") Address 
+                        input.form-control(type="text", name = "address", id="address", placeholder="Address is empty", value= data.address)
+                        label(for="phone_number", style="margin-top: 30px") Phone number 
+                        input.form-control(type="text", name = "phone_number", id="phone_number", placeholder="Phone number is empty", value = data.phone_number)
+                        input.btn.btn-primary(type='submit', value="Update Profile", style="margin-top: 50px")
+                // .row
+                    // h1 something
+                // .row
+                    // h1 Something
+            // .col-sm
+                // h1 Package Updates
+                // nav.navbar.navbar-light.bg-light(id="navbar-notification")
+                    // h3 Notifications
+
+                    // ul.nav.nav-pills
+                        // li.nav-item
+                            // a.nav-link(href="/notifications") All Notifications
+                
+                // div(data-spy="scroll", data-target="#navbar-notification" data-offset="50")
+                    // .col-sm.notification_scrollable
+                        // .p-4.pt-5
+                            // .alert.alert-dark(role='alert')
+                                // h1(style='font-size:120%;').alert-heading Here are your package messages
+                                // p
+                                    // | Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so tha
+                
+                            // .alert.alert-dark(role='alert')
+                                // h1(style='font-size:120%;').alert-heading Here are your package messages
+                                // p
+                                    // | Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so tha
+                            // .alert.alert-dark(role='alert')
+                                // h1(style='font-size:120%;').alert-heading Here are your package messages
+                                // p
+                                    // | Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so tha
+                            // .alert.alert-dark(role='alert')
+                                // h1(style='font-size:120%;').alert-heading Here are your package messages
+                                // p
+                                    // | Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so tha
+                            // .alert.alert-dark(role='alert')
+                                // h1(style='font-size:120%;').alert-heading Here are your package messages
+                                // p
+                                    // | Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so tha
+
+

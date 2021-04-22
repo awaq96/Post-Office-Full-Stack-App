@@ -1,0 +1,34 @@
+form(method="post" action="/register")
+    table
+        //- tr
+        //-     td Username
+        //-     td
+        //-         input(type="text" name="username")
+        //- tr
+        //-     td Firstname
+        //-     td
+        //-         input(type="password" name="firstname")
+        //- tr
+        //-     td Lastname
+        //-     td
+        //-         input(type="password" name="lastname")
+        tr
+            td User id
+            td
+                input(type="number" name="user_id")
+        tr
+            td Email
+            td
+                input(type="text" name="email")
+        tr
+            td Password
+            td
+                input(type="password" name="password")
+        tr
+            td Retype password
+            td
+                input(type="password" name="retype-password")
+        tr
+            td
+            td
+                input(type="submit" value = "Register")

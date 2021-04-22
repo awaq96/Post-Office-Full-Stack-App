@@ -1,0 +1,20 @@
+extends user
+
+block user_profile_content
+        .container-fluid
+        .row-lg
+            p Store ID:        #{officeData.off_id}      
+            p Store address:   #{officeData.off_address}  
+            p Active employee ID: #{employeeData.employee_id}       
+            p Active employee name: #{data.name}        
+            .dropdown-divider
+        .row-lg
+            .text-center
+                h5 Packages Management
+                ul.nav.nav-pills.nav-fill
+                    li.nav-item.active
+                        button.nav-link(id = "incomingButton") Incoming
+                    li.nav-item
+                        button.nav-link(id = "deliveredButton") Delivered 
+                    li.nav-item
+                        button.nav-link(id = "failedDeliveryButton") Failure Delivery

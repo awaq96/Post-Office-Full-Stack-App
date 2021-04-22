@@ -1,0 +1,56 @@
+extends layout
+block content
+  .container-fluid(style="padding-top:20px")
+    .jumbotron
+        .container
+          .row
+            .col-sm
+              .jumbotron
+                .text-center 
+                  h2 Schedule a Pickup
+                .form-group(id='form-group')
+                  h5 (*) is required
+                  label(for='Fname') First name*
+                  input(type='email', class='form-control', id='Fname', aria-describeby='Fname', placeholder="First name")
+                  small(id='emailHelp', class='form-text text-muted') 
+
+                  label(for='Lname') Last name*
+                  input(type='text', class='form-control', id='Lname', aria-describeby='Lname', , placeholder="Last name")
+                  small(id='usernameHelp', class='form-text text-muted') 
+
+                  label(for='address') Address*
+                  input(type='text', class='form-control', id='address', aria-describeby='address', placeholder="12345 Somewhere, State, 00000")
+                  // small(id='address', class='form-text text-muted') This is a little secret
+
+                  label(for='email') Email*
+                  input(type='email', class='form-control', id='email', aria-describeby='email-help', placeholder="email@example.com")
+                  small(id='emailHelp', class='form-text text-muted') 
+
+                  label(for='phoneNumber') Phone Number* 
+                  input(type='text', class='form-control', id='phoneNumber', aria-describeby='phoneNumber', placeholder="(xxx)-xxx-xxxx")
+                  small(id='address', class='form-text text-muted')
+                  
+                  br
+                  label(for='timepicker') Time to pickup*
+                    .time-picker(data-time='00:00')
+                      .hour
+                        .hr-up
+                        //input.hr(type='number', value='00')
+                        input.hr(type='date', class='form-control', id='date')
+                        .hr-down
+                      .separator :
+                      .minute
+                        .min-up
+                        input.hr(type='time', class='form-control', id='time')
+                        .min-down
+                    //script(src='pickuptime.js')
+                  br
+
+                  buttom.btn.btn-primary(type='submit', style="margin-top: 50px") Submit
+
+                 
+
+
+ 
+                  
+

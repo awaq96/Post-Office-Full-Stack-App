@@ -1,0 +1,1 @@
+exports.SESSION_CONFIG = { secret: "i love cats and dogs", cookie: {maxAge:  600000}}

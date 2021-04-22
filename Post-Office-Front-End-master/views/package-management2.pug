@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  .container-fluid(style="padding-top:20px")
+    h1.display-6 Package Management
+    .jumbotron
+      h2.display-4 
+      form(action="/package-management2", method="post", id="register-form")
+        label(for='package_id') Package ID (not tracking)
+        input(type='text', name="package_id", class='form-control', id='package_id', aria-describeby='package_id', placeholder="package_id")
+        label(for='current_location') New location
+        input(type='text', name="current_location", class='form-control', id='current_location', aria-describeby='current_location', placeholder="current_location")
+        input.btn.btn-primary(type='submit', value="Search", style="margin-top: 20px")

@@ -1,0 +1,145 @@
+extends user
+
+block user_profile_content
+    
+    center.h1(style='font-size:200%;') Reports
+    form(style='width:800px; margin-bottom:20px;',action='/user/adminTool',method="post",id="reports")
+        .container
+            .container
+                label(for='start_date') Start Date
+                input.hr(name='start_date',style='margin:10px;width:180px;display:inline;',type='date',dateFormat='YYYY-MM-DD',class='form-control', id='start_date')
+                input.hr(name='start_time',style='margin:10px;width:150px;display:inline;',type='time',timeFormat= 'HH:mm:ss', class='form-control', id='start_time')
+            .container
+                label(for='end_date') End Date
+                input.hr(name='end_date',style='margin:10px;width:180px;display:inline;',type='date',dateFormat='YYYY-MM-DD',class='form-control', id='end_date')
+                input.hr(name='end_time',style='margin:10px;width:150px;display:inline;',type='time', timeFormat= 'HH:mm:ss',class='form-control', id='end_time')
+        .container
+            .container
+                label(for='alert_only') Activities requiring attention only
+                input.hr(name='alert_only',style='margin:10px;',type='checkbox', id='alert_only')
+                input.btn.btn-primary(type="submit",value="Filter Results",style="margin:10px;margin-left:30px")
+    .bs-example
+        ul.nav.nav-pills
+            li.nav-item
+                a.nav-link.active(data-toggle='pill' href='#sales') Transactions 
+            li.nav-item
+                a.nav-link(data-toggle='pill' href='#activity') Activity
+            li.nav-item
+                a.nav-link(data-toggle='pill' href='#packages') Packages 
+            li.nav-item
+                a.nav-link(data-toggle='pill' href='#offices') Offices 
+            li.nav-item
+                a.nav-link(data-toggle='pill' href='#employees') Employees 
+        .tab-content
+            #sales.tab-pane.fade.show.active
+                h4.mt-2 Transaction Report 
+                pre TOTAL REVENUE: $#{revenueData.revenue} 
+                pre TOTAL # TRANSACTIONS: #{numTransactions.count} 
+                pre AVG TRANSACTION VALUE: $#{revenueAvg.average} 
+                .container-fluid
+                  .table-y.scrollbar(id="incoming-packages")
+                    table.table.table-bordered.table-striped.mb-0
+                        thead
+                        tr
+                            th(scope='col') Transaction Title 
+                            th(scope='col') Balance
+                            th(scope='col') Date
+                        each val, index in transactionData 
+                            tbody
+                                th(scope='row')= val.item_revenue_name
+                                td= val.item_revenue_price
+                                td= val.transaction_date
+
+            #activity.tab-pane.fade
+                h4.mt-2 Activity Report
+                .container-fluid
+                  .table-y.scrollbar(id="incoming-packages")
+                    table.table.table-bordered.table-striped.mb-0
+                        thead
+                        tr
+                            th(scope='col') Activity Type 
+                            th(scope='col') Date 
+                            th(scope='col') ID
+                            th(scope='col') Alert
+                        each val, index in activityData 
+                            tbody
+                                th(scope='row')= val.activity_type
+                                td= val.activity_date
+                                td= val.activity_user
+                                td= val.activity_alert.data
+
+            #packages.tab-pane.fade
+                h4.mt-2 All Packages 
+                .container-fluid
+                  .table-y.scrollbar(id="incoming-packages")
+                    table.table.table-bordered.table-striped.mb-0
+                        thead
+                        tr
+                            th(scope='col') Tracking Number 
+                            th(scope='col') Package Type
+                            th(scope='col') Insurance 
+                            th(scope='col') Package Value
+                            th(scope='col') Status 
+                            th(scope='col') Current Location 
+                            th(scope='col') 
+                        each val, index in packageData 
+                            tbody
+                                th(scope='row')= val.tracking_number
+                                td= val.package_type
+                                td= val.insurance
+                                td= val.package_value
+                                td= val.delivery_status
+                                td= val.current_location
+                                td
+                                    .dropdown
+                                        button.btn.btn-primary.dropdown-toggle(type="button", data-toggle="dropdown", aria-haspopup="true",aria-expanded="false") Action
+                                        .dropdown-menu
+                                            a.dropdown-item(type="button", href='/user/packageDetailStaff/' + val.tracking_number) Update 
+                                            a.dropdown-item(type="button", href='/package/removePackage/' + val.tracking_number) Delete 
+            #offices.tab-pane.fade
+                h4.mt-2 Postal Store Locations 
+                .container-fluid
+                  .table-y.scrollbar(id="incoming-packages")
+                    table.table.table-bordered.table-striped.mb-0
+                        thead
+                        tr
+                            th(scope='col') ID 
+                            th(scope='col') Name 
+                            th(scope='col') Zip Code 
+                            th(scope='col') Address
+                        each val, index in officeData 
+                            tbody
+                                th(scope='row')= val.off_id
+                                td= val.off_name
+                                td= val.off_zip
+                                td= val.off_address
+            #employees.tab-pane.fade
+                h4.mt-2 All Employees
+                .container-fluid
+                  .table-y.scrollbar(id="incoming-packages")
+                    table.table.table-bordered.table-striped.mb-0
+                        thead
+                        tr
+                            th(scope='col') ID 
+                            th(scope='col') Office ID 
+                            th(scope='col') Is Admin 
+                            th(scope='col') Phone Number 
+                            th(scope='col') Position
+                            th(scope='col') Schedule
+                            th(scope='col') Salary ( hourly ) 
+                            th(scope='col') 
+                        each val, index in employeeData 
+                            tbody
+                                th(scope='row')= val.employee_id
+                                td= val.office_id
+                                td= val.is_admin
+                                td= val.phone_number
+                                td= val.position
+                                td= val.schedule
+                                td= val.salary
+                                td 
+                                    .dropdown
+                                        button.btn.btn-primary.dropdown-toggle(type="button", data-toggle="dropdown", aria-haspopup="true",aria-expanded="false") Action
+                                        .dropdown-menu
+                                            a.dropdown-item(type="button", href='/user/employeeUpdate/' + val.employee_id) Update 
+                                            a.dropdown-item(type="button", href='/user/deleteEmployee/' + val.employee_id) Delete 

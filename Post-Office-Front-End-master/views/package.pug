@@ -1,0 +1,32 @@
+extends user 
+block script
+    script.
+       window.onload=function(){
+
+       } 
+block user_profile_content
+
+    form(action="/user/packages/addPackage", method="post")
+        h5 Add new tracking number 
+        input(type='number', name="tracking_number", class='form-control', id='tracking_number', aria-describeby='email-help')
+        input.btn.btn-primary(type='submit', value="Add new package", style="margin-top: 20px; margin-bottom: 50px")
+
+    .tably-y.scrollbar
+        table.table.table-bordered.table-striped.mb-0
+            thead
+            tr
+                th(scope='col') #Tracking numbers
+                th(scope='col') Location 
+                th(scope='col') Status 
+                th(scope='col') Sender 
+                th(scope='col') 
+                
+            tbody
+            for val, key in packageData
+                tr
+                    th(scope='row')= val.tracking_number
+                    td= val.current_location
+                    td= val.delivery_status
+                    td= val.sender_name
+                    td
+                        a.btn.btn-primary(type="button", href='/user/packageDetail/'+val.tracking_number) Details

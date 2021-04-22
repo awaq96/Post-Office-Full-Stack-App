@@ -1,0 +1,88 @@
+extends layout
+block content
+  .container-fluid(style="padding-top:20px")
+    .jumbotron
+        .container
+          .row
+            .col-sm
+              .jumbotron
+                .text-center 
+                  h2 Price Calculator
+                div
+                  .form-group(id='form-group')
+                    //h5 (*) is required
+                    label(for='address') What's your address?
+                    input(type='text', class='form-control', id='address', aria-describeby='address', placeholder="12345 Somewhere, State, 00000")
+                    br
+                    label(for='destination') What's the destination?
+                    input(type='text', class='form-control', id='destination', aria-describeby='destination', placeholder="12345 Somewhere, State, 00000")
+                    
+                  label(for='timepicker') What's the Date and Time you plan to mail the item?
+                  div
+                    .time-picker(data-time='00:00')
+                      .hour
+                        .hr-up
+                        //input.hr(type='number', value='00')
+                        input.hr(type='date', class='form-control', id='date')
+                        .hr-down
+                      .separator :
+                      .minute
+                        .min-up
+                        input.hr(type='time', class='form-control', id='time')
+                        .min-down
+                    //script(src='pickuptime.js')
+                    br
+                    label(for='item') What are you Mailing?
+                    div
+                      input#CrematedRemains(data-val='true', data-val-required='The Cremated Remains field is required.', name='CrematedRemains', tabindex='7', type='checkbox', value='true')
+                      input(name='CrematedRemains', type='hidden', value='false')
+                      label.control-label(style='font-weight: normal', for='CrematedRemains') Cremated Remains
+                    div
+                      input#LiveAnimals(data-val='true', data-val-required='The Live Animal(s)field is required.', name='LiveAnimals', tabindex='9', type='checkbox', value='true')
+                      input(name='LiveAnimals', type='hidden', value='false')
+                      label.control-label(style='font-weight: normal', for='LiveAnimals') Live Animal(s)
+                    div
+                      input#DayOldPoultry(data-val='true', data-val-required='The Day-Old Poultry field is required.', name='DayOldPoultry', tabindex='11', type='checkbox', value='true')
+                      input(name='DayOldPoultry', type='hidden', value='false')
+                      label.control-label(style='font-weight: normal', for='DayOldPoultry') Day-Old Poultry
+                    div
+                      input#Hazmat(data-val='true', data-val-required='The Hazardous Materials field is required.', name='Hazmat', tabindex='13', type='checkbox', value='true')
+                      input(name='Hazmat', type='hidden', value='false')
+                      label.control-label(style='font-weight: normal', for='Hazmat') Hazardous Materials
+                    div
+                      input#Others(data-val='true', data-val-required='The Others field is required.', name='Others', tabindex='13', type='checkbox', value='true')
+                      input(name='Others', type='hidden', value='false')
+                      label.control-label(style='font-weight: normal', for='Others') Others
+
+                    br
+                    label(for='mailtype') What mail type you require?
+                    div
+                      input#Priority(data-val='true', data-val-required='The Requires Priority field is required.', name='Priority', tabindex='16', type='checkbox', value='true')
+                      input(name='Priority', type='hidden', value='false')
+                      label.control-label(style='font-weight: normal', for='Priority') Priority
+                    div
+                      input#First-Class(data-val='true', data-val-required='The Requires First-class field is required.', name='First-Class', tabindex='16', type='checkbox', value='true')
+                      input(name='First-Class', type='hidden', value='false')
+                      label.control-label(style='font-weight: normal', for='First-Class') First-Class
+                    
+                    br
+                    label(for='transport') What transportation you require?
+                    div
+                      input#GroundTransportation(data-val='true', data-val-required='The Requires Ground Transportation field is required.', name='GroundTransportation', tabindex='16', type='checkbox', value='true')
+                      input(name='GroundTransportation', type='hidden', value='false')
+                      label.control-label(style='font-weight: normal', for='GroundTransportation') Ground Transportation
+                    div
+                      input#AirTransportation(data-val='true', data-val-required='The Requires Air Transportation field is required.', name='AirTransportation', tabindex='16', type='checkbox', value='true')
+                      input(name='GroundTransportation', type='hidden', value='false')
+                      label.control-label(style='font-weight: normal', for='GroundTransportation') Air Transportation
+                    
+                  div
+
+                    buttom.btn.btn-primary(type='submit', style="margin-top: 50px") Calculate
+
+                 
+
+
+ 
+                  
+

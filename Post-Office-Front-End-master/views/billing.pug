@@ -1,0 +1,82 @@
+extends layout
+block content
+  .container-fluid(style="padding-top:20px")
+    .jumbotron
+        .container
+          .row
+            .col-sm
+              .jumbotron
+                .text-center 
+                  h2 Check Out
+                div
+                  .form-group(id='form-group')
+                    //h5 (*) is required
+                    label(for='Fname') First name*
+                    input(type='email', class='form-control', id='Fname', aria-describeby='Fname', placeholder="First name")
+                    small(id='emailHelp', class='form-text text-muted') 
+
+                    label(for='Lname') Last name*
+                    input(type='text', class='form-control', id='Lname', aria-describeby='Lname',  placeholder="Last name")
+                    small(id='usernameHelp', class='form-text text-muted')
+                    label(for='username') Username*
+                    input(type='text', class='form-control', id='email', aria-describeby='password-help',  placeholder="User name")
+                    small(id='usernameHelp', class='form-text text-muted') 
+                    label(for='email') Email(optional)
+                    input(type='email', class='form-control', id='email', aria-describeby='email-help', placeholder="email@example.com")
+                    small(id='emailHelp', class='form-text text-muted') 
+
+                    label(for='phoneNumber') Phone Number(optional) 
+                    input(type='text', class='form-control', id='phoneNumber', aria-describeby='phoneNumber', placeholder="(xxx)-xxx-xxxx")
+                    small(id='address', class='form-text text-muted')
+
+                    label(for='address') Address
+                    input(type='text', class='form-control', id='address', aria-describeby='address', placeholder="12345 Somewhere, State, 00000")
+                    // small(id='address', class='form-text text-muted') This is a little secret
+
+                    label(for='address2') Address2 (optional)
+                    input(type='text', class='form-control', id='address2', aria-describeby='address2', placeholder="12345 Somewhere, State, 00000")
+                    // small(id='address', class='form-text text-muted') This is a little secret
+                   
+                 
+                    br
+                    label(for='item') Payment?
+                    div
+                      input#CreditCard(data-val='true', data-val-required='The Credit Card field is required.', name='CreditCard', tabindex='7', type='checkbox', value='true')
+                      input(name='CreditCard', type='hidden', value='false')
+                      label.control-label(style='font-weight: normal', for='CreditCard') Credit Card
+                    div
+                      input#DebitCard(data-val='true', data-val-required='The Debit Card field is required.', name='DebitCard', tabindex='7', type='checkbox', value='true')
+                      input(name='DebitCard', type='hidden', value='false')
+                      label.control-label(style='font-weight: normal', for='DebitCard') Debit Card
+                    div
+                      input#Paypal(data-val='true', data-val-required='The Paypal field is required.', name='Paypal', tabindex='7', type='checkbox', value='true')
+                      input(name='Paypal', type='hidden', value='false')
+                      label.control-label(style='font-weight: normal', for='Paypal') Paypal
+
+
+                    div 
+                        label(for='cc-name') Name on card
+                        input#cc-name.form-control(type='text', placeholder='Name on Card', required='')
+                        small.text-muted Full name as displayed on card
+                    div 
+                        label(for='cc-number') Credit card number
+                        input#cc-name.form-control(type='text', placeholder='xxxx xxxx xxxx xxxx', required='')
+                    div 
+                        label(for='cc-ex') expiration
+                        input#cc-name.form-control(type='text', placeholder='xx/xx/xxxx', required='')
+                    div 
+                        label(for='cc-cvv') cvv
+                        input#cc-name.form-control(type='text', placeholder='xxx', required='')
+                        
+
+                    
+                    
+
+                    buttom.btn.btn-primary(type='submit', style="margin-top: 50px") Submit
+
+                 
+
+
+ 
+                  
+

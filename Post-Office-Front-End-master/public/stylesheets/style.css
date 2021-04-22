@@ -1,0 +1,82 @@
+
+.navbar {
+  border-bottom: #008ed6 3px solid;
+}
+
+.page-footer{
+  background-color: #008ed6;
+  color: #ffffff
+}
+
+#home-section{
+  background: url(../img/dark_img.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 700px;
+}
+
+.notification_scrollable{
+ position: relative;
+ 
+}
+.time-picker {
+	display: flex;
+	
+	align-items: center;
+
+
+} 
+.notification_scrollable {
+  height: 500px;
+  width: 600px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+  
+
+.scrollbar {
+  height: 500px;
+  width: auto;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+
+.table-y {
+  display: block;
+  size: cover;
+}
+
+
+
+.card-body {
+  padding: 2px 16px;
+  background-color:#F5F5F5;
+  width: 500%;
+}
+
+.panel-heading {
+  /* Add shadows to create the "card" effect */
+
+  padding: 16px;
+  background-color:#E8E8E8;
+}
+
+
+h8 {  
+  padding-left:77em;
+}
+
+h7 {  
+  padding-left:em;
+}
+
+
+.time-picker {
+	display: flex;
+	
+	align-items: center;
+
+	
+} 

@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  .container-fluid(style="padding-top:20px")
+    .jumbotron
+      if output.tracking_number
+        .text-center
+          h3 Info for tracking number #{output.tracking_number}
+        p Current location: #{output.location}
+        p Destination: #{output.destination}
+        p Insurance: #{output.insurance}
+        p Signature Required:  #{output.digital_signature}
+      else
+        .text-center
+          h3 Tracking number is invalid
+
+      //h1.display-4 #{output}
+      //p.lead Tracking info for tracking number #{output}
+      //| #{output.tracking_number || 'Tracking number is invalid'}
+      //if output
+      //  | #{output.tracking_number}
+      //else
+      //  | Tracking number is invalid
+      //p Tracking number: #{output.tracking_number}
+      //p : #{output.tracking_number}
+      //ul
+      //  for item in output
+      //    li= item
+      //input.form-control(type='text',placeholder='Tracking Number #123456789', aria-label="Search")
+      //hr.my-4
+      //a.btn.btn-primary.btn-lg(href="./", role='button') Search
+
+  
